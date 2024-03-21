@@ -6,7 +6,10 @@ namespace MyBlog.DataAccessLayer.Repository
 {
     public class GenericRepository<T> : IGenericDal<T> where T : class
     {
+
         BlogContext context = new BlogContext();
+
+
         public void Delete(int id)
         {
             var value = context.Set<T>().Find(id);
