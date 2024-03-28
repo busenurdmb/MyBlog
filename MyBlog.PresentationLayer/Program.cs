@@ -1,7 +1,17 @@
+using MyBlog.BusinessLayer.Abstract;
+using MyBlog.BusinessLayer.Concrete;
+using MyBlog.DataAccessLayer.Abstract;
+using MyBlog.DataAccessLayer.EntityFramwork;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<ICategoryService, CategoryManager>();
+builder.Services.AddScoped<ICategoryDal, EfCategroyDal>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
 
 var app = builder.Build();
 

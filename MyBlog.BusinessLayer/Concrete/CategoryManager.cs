@@ -11,23 +11,26 @@ namespace MyBlog.BusinessLayer.Concrete
 {
     public class CategoryManager : ICategoryService
     {
-        ICategoryDal _categoryDal;
+       private readonly ICategoryDal _categoryDal;
 
-        
+        public CategoryManager(ICategoryDal categoryDal)
+        {
+            _categoryDal = categoryDal;
+        }
 
         public void TDelete(int id)
         {
-            throw new NotImplementedException();
+           _categoryDal.Delete(id);
         }
 
         public Category TGetById(int id)
         {
-            throw new NotImplementedException();
+          return _categoryDal.GetById(id);
         }
 
         public List<Category> TGetListAll()
         {
-            throw new NotImplementedException();
+            return _categoryDal.GetListAll();
         }
 
         public void TInsert(Category entity)
@@ -40,7 +43,7 @@ namespace MyBlog.BusinessLayer.Concrete
 
         public void TUpdate(Category entity)
         {
-            throw new NotImplementedException();
+             _categoryDal.Update(entity);
         }
     }
 }
