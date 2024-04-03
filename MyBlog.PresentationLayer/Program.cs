@@ -7,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
 builder.Services.AddScoped<ICategoryDal, EfCategroyDal>();
-
+builder.Services.AddScoped<IArticleService, ArticleManager>();
+builder.Services.AddScoped<IArticleDal, EfArticleDal>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
