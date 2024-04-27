@@ -1,0 +1,25 @@
+﻿@model List<Comment>
+<div class="single-post__comment">
+    <div class="widget__title">
+        <h4>03 Comment</h4>
+    </div>
+    @foreach (var item in Model)
+    {
+           <div class="single-post__comment__item">
+        <div class="single-post__comment__item__pic">
+            <img src="img/categories/single-post/comment/comment-1.jpg" alt="">
+        </div>
+        <div class="single-post__comment__item__text">
+            <h5>YoRUM aDD SOYAD</h5>
+            <span>@DateTime.Now.ToString("dd-MMM-yyyy")</span>
+            <p>
+               @item.Description
+            </p>
+           
+        </div>
+    </div>
+    }
+ 
+   
+</div>
+

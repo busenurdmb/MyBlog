@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MyBlog.PresentationLayer.Controllers
+namespace MyBlog.PresentationLayer.Areas.Writer.Controllers
 {
-    public class AdminLayoutController : Controller
+    [Area("Writer")]
+    public class WriterLayoutController : Controller
     {
         public IActionResult Index()
         {

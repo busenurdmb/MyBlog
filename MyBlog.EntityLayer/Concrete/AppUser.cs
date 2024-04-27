@@ -13,5 +13,7 @@ namespace MyBlog.EntityLayer.Concrete
         public string SurName { get; set; }
         public string? City { get; set; }
         public string? İmageUrl { get; set; }
+
+        public List<Article> Articles { get; set; }
     }
 }

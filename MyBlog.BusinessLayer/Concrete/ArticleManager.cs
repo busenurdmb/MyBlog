@@ -18,6 +18,10 @@ namespace MyBlog.BusinessLayer.Concrete
             _articleDal = ArticleDal;
         }
 
+        public List<Article> TGetArticlesByWriter(int id)
+        {
+            return _articleDal.GetArticlesByWriter(id);
+        }
         public void TDelete(int id)
         {
             _articleDal.Delete(id);
@@ -43,6 +47,21 @@ namespace MyBlog.BusinessLayer.Concrete
         public void TUpdate(Article entity)
         {
             _articleDal.Update(entity);
+        }
+
+        public List<Article> TGetWithCategoryByWriter(int id)
+        {
+          return  _articleDal.GetWithCategoryByWriter(id);
+        }
+
+        public List<Article> TGetWithCategory()
+        {
+            return _articleDal.GetWithCategory();
+        }
+
+        public Article TGetWithCategoryByArticle(int id)
+        {
+            return _articleDal.GetWithCategoryByArticle(id);
         }
     }
 }

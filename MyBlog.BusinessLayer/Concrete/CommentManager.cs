@@ -28,6 +28,11 @@ namespace MyBlog.BusinessLayer.Concrete
             return _commentDal.GetById(id);
         }
 
+        public List<Comment> TGetCommentsByBlog(int id)
+        {
+            return _commentDal.GetCommentsByBlog(id);
+        }
+
         public List<Comment> TGetListAll()
         {
             return _commentDal.GetListAll();

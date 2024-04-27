@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyBlog.DataAccessLayer.Context;
 
@@ -11,9 +12,10 @@ using MyBlog.DataAccessLayer.Context;
 namespace MyBlog.DataAccessLayer.Migrations
 {
     [DbContext(typeof(BlogContext))]
-    partial class BlogContextModelSnapshot : ModelSnapshot
+    [Migration("20240423162631_mig6")]
+    partial class mig6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -251,9 +253,6 @@ namespace MyBlog.DataAccessLayer.Migrations
                     b.Property<int?>("AppUserId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("CoverImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -276,8 +275,6 @@ namespace MyBlog.DataAccessLayer.Migrations
                     b.HasKey("ArticleId");
 
                     b.HasIndex("AppUserId");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("Articles");
                 });
@@ -307,9 +304,6 @@ namespace MyBlog.DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"), 1L, 1);
 
-                    b.Property<int>("ArticleId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedDatae")
                         .HasColumnType("datetime2");
 
@@ -321,8 +315,6 @@ namespace MyBlog.DataAccessLayer.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("CommentId");
-
-                    b.HasIndex("ArticleId");
 
                     b.ToTable("Comments");
                 });
@@ -459,37 +451,10 @@ namespace MyBlog.DataAccessLayer.Migrations
                         .WithMany("Articles")
                         .HasForeignKey("AppUserId");
 
-                    b.HasOne("MyBlog.EntityLayer.Concrete.Category", "Category")
-                        .WithMany("Articles")
-                        .HasForeignKey("CategoryId");
-
                     b.Navigation("AppUser");
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("MyBlog.EntityLayer.Concrete.Comment", b =>
-                {
-                    b.HasOne("MyBlog.EntityLayer.Concrete.Article", "Article")
-                        .WithMany("Comments")
-                        .HasForeignKey("ArticleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Article");
                 });
 
             modelBuilder.Entity("MyBlog.EntityLayer.Concrete.AppUser", b =>
-                {
-                    b.Navigation("Articles");
-                });
-
-            modelBuilder.Entity("MyBlog.EntityLayer.Concrete.Article", b =>
-                {
-                    b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("MyBlog.EntityLayer.Concrete.Category", b =>
                 {
                     b.Navigation("Articles");
                 });

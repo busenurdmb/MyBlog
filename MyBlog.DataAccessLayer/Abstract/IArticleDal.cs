@@ -1,13 +1,14 @@
 ﻿using MyBlog.EntityLayer.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MyBlog.DataAccessLayer.Abstract
 {
     public interface IArticleDal : IGenericDal<Article>
     {
+        List<Article> GetArticlesByWriter(int id);
+        List<Article> GetWithCategoryByWriter(int id);
+        List<Article> GetWithCategory();
+        Article GetWithCategoryByArticle(int id);
+
     }
 }
