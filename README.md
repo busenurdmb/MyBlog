@@ -8,7 +8,7 @@ Bu proje My Yazılım Akademi Bünyesinde Murat Yücedağ Eğitmenliği tarafın
 - 👤 Kullanıcı Arayüzü: Şık ve duyarlı bir tasarım, ziyaretçilere Blogları listeleme ,Etiketlerine göre blogları listelemme,member olarak üye olup yorum yapabilme imkanı sunuyor.
 - 🧑‍💻Yazar Arayüzü: CRUD işlemlerine sahip olan Yazar paneli, Yazar biligleri güncelleyebilir,Blog için ekelem silme güncelleme işlemlemleri yapabilir.Bloglarına etiket ekleyebilir.
  kendisine gelen yorumları listeler
--🧑‍💻👤admin ve yazarlar birbirleri ile mesajlaşabilir ,gelen mesajları görebilir istedikleri kategorilere
+- 🧑‍💻👤admin ve yazarlar birbirleri ile mesajlaşabilir ,gelen mesajları görebilir istedikleri kategorilere
 göre ayırabilirler(Yıldızlanmış,Spam,Çöp kutusu) Taslak mesajı oluşturarak istedikleri zaman gönderebilirler
 
 # Kullanılan Teknolojiler ve Uygulamalar
