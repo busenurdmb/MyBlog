@@ -1,0 +1,9 @@
+﻿@model List<ArticleTag>
+<div class="single-post__tags">
+    @foreach (var item in Model)
+    {
+         <a href="#">@item.Tag.TagTitle</a>
+    }
+   
+    
+</div>

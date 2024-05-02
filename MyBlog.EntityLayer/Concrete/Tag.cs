@@ -10,5 +10,6 @@ namespace MyBlog.EntityLayer.Concrete
     {
         public int TagId { get; set; }
         public string TagTitle { get; set; }
+        public List<ArticleTag> ArticleTags { get; set; }
     }
 }

@@ -1,0 +1,46 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+@await Component.InvokeAsync("_DefaultHeadComponentPartial")
+
+<body>
+    <!-- Page Preloder -->
+    <!-- Humberger Begin -->
+    @await Component.InvokeAsync("_SidebarComponentPartial")
+
+    <!-- Humberger End -->
+    <!-- Header Section Begin -->
+    @await Component.InvokeAsync("_NavbarComponetPartial")
+
+    <!-- Header Section End -->
+    <!-- Categories Section Begin -->
+    @RenderBody()
+    <!-- Categories Section End -->
+    <!-- Footer Section Begin -->
+    @await Component.InvokeAsync("_FooterComponentPartial")
+
+    <!-- Footer Section End -->
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+    <!-- Js Plugins -->
+    <script src="~/foodeiblog-master/js/jquery-3.3.1.min.js"></script>
+    <script src="~/foodeiblog-master/js/bootstrap.min.js"></script>
+    <script src="~/foodeiblog-master/js/jquery.slicknav.js"></script>
+    <script src="~/foodeiblog-master/js/owl.carousel.min.js"></script>
+    <script src="~/foodeiblog-master/js/main.js"></script>
+</body>
+
+</html>
+

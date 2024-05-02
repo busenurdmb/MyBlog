@@ -1,0 +1,49 @@
+﻿
+
+@model ﻿Tag
+@{
+    ViewData["Title"] = "Updatetag";
+    Layout = "~/Areas/Writer/Views/WriterLayout/Index.cshtml";
+}
+
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="page-header">
+          <h3 class="page-title">Etiket Güncelleme Paneli</h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Etiketler</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> Güncelle
+                </ol>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Etiket Güncelleme Paneli</h4>
+                        <p class="card-description">Aşağıdaki Alanları Boş Geçmeyin</p>
+                          <form method="post">
+                        <div class="form-group">
+                            @Html.HiddenFor(x => x.TagId)
+                          
+                                <label>Tag</label>
+                                <input type="text" asp-for="TagTitle" class="form-control" />
+
+                              
+                                
+                      </div>
+                        <button type="submit" class="btn btn-primary">Güncelle</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+

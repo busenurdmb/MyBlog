@@ -1,13 +1,11 @@
-﻿@model ﻿List<MyBlog.EntityLayer.Concrete.Article>
+﻿@model ﻿List<Article>
 @{
     ViewData["Title"] = "MyBlogList";
     Layout = "~/Areas/Writer/Views/WriterLayout/Index.cshtml";
 }
 
 
-@* @{
-    Layout = "~/Areas/Writer/Views/WriterLayout/Index.cshtml";
-} *@
+
 
 <div class="main-panel">
     <div class="content-wrapper">
@@ -48,8 +46,28 @@
                                             <td>@item.Title</td>
                                             <td>@item.Category.CategoryName</td>
                                             <td>@item.CreatedDate.ToString("dd-MMM-yyyy")</td>
-                                            <td><a href="/Writer/Blog/DeleteBlog/@item.ArticleId" class="btn btn-danger">Sil</a></td>
-                                            <td><a href="/Writer/Blog/UpdateBlog/@item.ArticleId" class="btn btn-danger">Güncelle</a></td>
+                                            <td>
+                                                <a href="/Writer/Blog/DeleteBlog/@item.ArticleId" class="btn btn-danger ">
+                                        <span class="icon text-white">
+                                            <i class="mdi mdi-close-circle"></i>
+                                        </span>
+                                        <span class="text">Sil</span>
+                                    </a></td>
+                                       <td>
+                                                <a href="/Writer/Blog/UpdateBlog/@item.ArticleId" class="btn btn-success ">
+                                        <span class="icon text-white">
+                                            <i class="mdi mdi-lead-pencil"></i>
+                                        </span>
+                                        <span class="text">Güncelle</span>
+                                    </a></td>
+                                     <td>
+                                                <a href="/Writer/Blog/CreateTagBlog/@item.ArticleId" class="btn btn-info">
+                                        <span class="icon text-white">
+                                            <i class="mdi mdi-plus-circle"></i>
+                                        </span>
+                                        <span class="text">Tag Ekle</span>
+                                    </a></td>
+                                           
                                         </tr>
                                     }
                                     

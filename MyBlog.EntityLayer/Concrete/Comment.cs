@@ -13,7 +13,9 @@ namespace MyBlog.EntityLayer.Concrete
         public DateTime CreatedDatae { get; set; } 
         public bool Status { get; set; }
         public int ArticleId {  get; set; }
+        public int? AppUserId {  get; set; }
         public Article Article { get; set; }
+        public AppUser AppUser { get; set; }
         
     }
 }

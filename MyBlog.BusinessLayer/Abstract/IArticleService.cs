@@ -13,5 +13,9 @@ namespace MyBlog.BusinessLayer.Abstract
         List<Article> TGetWithCategoryByWriter(int id);
         List<Article> TGetWithCategory();
         Article TGetWithCategoryByArticle(int id);
+         Article GetWithCategoryandUserByArticle(int id);
+        public List<Article> GetWithCategorylast6();
+        List<Article> GetArticlesByTagId(int tagId);
+         List<object> TGetChart();
     }
 }

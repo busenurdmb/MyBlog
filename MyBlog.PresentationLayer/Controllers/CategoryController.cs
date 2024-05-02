@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyBlog.BusinessLayer.Abstract;
 using MyBlog.EntityLayer.Concrete;
 
 namespace MyBlog.PresentationLayer.Controllers
 {
+    [AllowAnonymous]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;

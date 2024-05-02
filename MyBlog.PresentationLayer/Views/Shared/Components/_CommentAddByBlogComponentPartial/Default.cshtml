@@ -1,0 +1,66 @@
+﻿@* @model ﻿Comment *@
+<div class="single-post__leave__comment">
+    <div class="widget__title">
+        <h4>Yorum Yap</h4>
+    </div>
+    <form method="post" class="Commantform">
+        <div class="input-list">
+            <input type="hidden" name="ArticleId" value="@ViewBag.Id" />
+            <input type="hidden" name="AppUserId" placeholder="Name">
+        </div>
+        <textarea name="Description" placeholder="Yorumunu buraya yazabilirsin"></textarea>
+         @if (User.Identity.IsAuthenticated)
+                {
+                    <button id="btnbutton" class="btn border border-secondary text-primary rounded-pill px-4 py-3">Gönder</button>
+                }
+                else
+                {
+                    <div class="alert alert-light text-center lead">
+                        Yorum Yapabilmeniz için giriş yapmanız gereklidir <a asp-action="Index" asp-controller="Login">Giriş Yap</a>
+
+                    </div>
+                }
+       
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+ <script>
+    $(document).ready(function () {
+        $('.Commantform').submit(function (e) {
+            e.preventDefault(); // Formun normal submit işlemini engeller
+
+            var formData = $(this).serialize(); // Form verilerini alır
+
+            $.ajax({
+                type: "POST",
+                url: "/Comment/Add", // Formun gönderileceği URL
+                data: formData, // Form verileri
+                success: function (response) {
+                    if (response === "Ok") {
+                        // SweetAlert2 ile başarılı iletişim kutusu göster
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Mesaj Başarılı!',
+                            text: 'Mesaj talebiniz alınmıştır.'
+                        });
+                    } if(response=="Hata"){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Kodu kontrol edin!',
+                            text: 'Hatalı kod girdiiniz.'
+                        });
+                        // Eğer dönen yanıt "Ok" değilse, başka bir işlem yapabilirsiniz
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Hata olduğunda yapılacak işlemler
+                    console.log("Mesaj oluşturulurken bir hata oluştu");
+                    console.log(xhr.responseText);
+                    // Eğer gerekirse, hata mesajını kullanıcıya göstermek için burada bir işlem yapabilirsiniz.
+                }
+            });
+        });
+    });
+
+</script>

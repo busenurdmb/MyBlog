@@ -1,0 +1,72 @@
+﻿
+
+@model ﻿List<AppUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Writer/Views/WriterLayout/Index.cshtml";
+}
+
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title">Yazar Sayfası</h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Yazarlar</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> Benim Yazarlarım </li>
+                </ol>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Yazar Listesi</h4>
+                        <p class="card-description">
+                            Yazmış olduğunuz Yazarlarla ilgili işlemleri aşağıdaki panelden gerçekleştirebilirsiniz.
+                        </p>
+                        <div class="pull-right position search_inbox">
+                                    <div class="input-append">
+                                        <input type="text" class="sr-input form-control" id="filterText" placeholder="Arama yapınız" onkeyup="filterProducts(this.value)">
+                                        <button class="btn sr-btn" type="button"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                       <th>Resim</th>
+                                        <th>İsim</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr data-name="@item.Name" class="product-item">
+
+                                            <td><img src="@item.İmageUrl" /></td>
+                                            <td>@item.Name @item.SurName</td>
+                                            <td >@item.Email</td>
+                                            
+                                         
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

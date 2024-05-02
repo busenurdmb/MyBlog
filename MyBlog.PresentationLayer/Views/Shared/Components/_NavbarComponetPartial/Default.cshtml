@@ -11,13 +11,23 @@
                 <div class="col-lg-8 col-md-10 order-md-2 order-3">
                     <nav class="header__menu">
                         <ul>
-                            <li><a href="./index.html">Anasayfa</a></li>
+
+                            <li><a href="/Default/Index">Anasayfa</a></li>
                             
-                            <li><a href="#">Blog Listesi</a></li>
-                            <li><a href="#">Kategoriler</a></li>
-                            <li><a href="#">Hakkımızda</a></li>
-                            <li><a href="./about.html">Yazarlar</a></li>
-                            <li><a href="./contact.html">Bize Yazın</a></li>
+                            <li><a href="/Login/Index">Giriş Yap</a></li>
+
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li><a href="/Admin/Dashboard/Index">Admin Paneli</a></li>
+
+                            }
+                            @if (User.IsInRole("Writer"))
+                            {
+                                <li><a href="/Writer/Dashboard/Index">Yazar Paneli</a></li>
+
+                            }
+                          
+                           
                         </ul>
                     </nav>
                 </div>

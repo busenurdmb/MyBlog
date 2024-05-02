@@ -1,0 +1,59 @@
+﻿@model Notification
+@{
+    ViewData["Title"] = "CreateNotification";
+    Layout = "~/Areas/Writer/Views/WriterLayout/Index.cshtml";
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title">Yeni Bildirim Girişi</h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Bildirim Listem</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> Yeni Bildirim
+                </ol>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Yeni Bildirim Ekleme Paneli</h4>
+                        <p class="card-description">Aşağıdaki Alanları Boş Geçmeyin</p>
+                        <form method="post">
+                            <div class="form-group">
+
+                                <label> Açıklama</label>
+                               
+                                <input type="text" asp-for="Description" class="form-control" />
+
+                                <label>İcon</label>
+
+                                
+                                <input type="text" asp-for="NotificationIcon" class="form-control" />
+
+                                <span class="text-danger">mdi mdi-information formatında</span>
+                                <br />
+                                <label>İcon Rengi</label>
+                                <input type="text" asp-for="IconCirleColor" class="form-control" />
+
+                              
+                                <span class="text-danger">text-primary formatında</span>
+
+
+
+
+                            </div>
+                            <button type="submit" class="btn btn-primary"> Ekle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+

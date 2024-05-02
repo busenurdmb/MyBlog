@@ -15,7 +15,7 @@ namespace MyBlog.PresentationLayer.ViewComponents.DefaultViewComponent
 
         public IViewComponentResult Invoke()
         {
-            var values=_articleService.TGetListAll();
+            var values = _articleService.TGetWithCategory().TakeLast(4).ToList();
             return View(values);
         }
     }

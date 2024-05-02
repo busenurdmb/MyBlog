@@ -1,5 +1,15 @@
-﻿@model List<Article>
+﻿@using System.Text.RegularExpressions
+@model List<Article>
+@functions {
+    public string RemoveHtmlTags(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+            return input;
 
+        var regex = new Regex("<.*?>");
+        return regex.Replace(input, "");
+    }
+}
 <div class="col-lg-8 col-md-8">
     <div class="breadcrumb__text">
         <h2>Blog Listesi: <span>Tüm Bloglar</span></h2>
@@ -16,22 +26,38 @@
                 <div class="categories__post__item__pic set-bg"
                          data-setbg="@item.ThumbImageUrl">
                     <div class="post__meta">
-                        <h4>@item.CreatedDate.Day</h4>
-                        <span>@item.CreatedDate.Month</span>
+                            <h4>@item.CreatedDate.ToString("dd")</h4>
+                            <span>@item.CreatedDate.ToString("MMM")</span>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="categories__post__item__text">
-                    <span class="post__label">Kategori</span>
-                    <h3><a href="#">@item.Title</a></h3>
+                    <span class="post__label">Kategori:@item.Category.CategoryName</span>
+                        <h3><a href="/Blog/BlogDetail/@item.ArticleId">@item.Title</a></h3>
                     <ul class="post__widget">
                         <li>by <span>Yazar</span></li>
                         <li>3 dk okuma</li>
                         <li>0 yorum</li>
                     </ul>
-                    <p>
-                      @item.Detail.Substring(0,200);
+                        <p >
+                            @{
+                                if (!string.IsNullOrEmpty(item.Detail))
+                                {
+                                    // Metindeki HTML etiketlerini kaldır
+                                    var detailWithoutHtml = RemoveHtmlTags(item.Detail);
+
+                                    // İlk 50 kelimeyi al
+                                    var first50Words = string.Join(" ", detailWithoutHtml.Split(' ').Take(50));
+
+                                    @Html.Raw(first50Words + "...")
+                                }
+                                else
+                                {
+                                    @Html.Raw(string.Empty)
+                                }
+                            }
+                    
                     </p>
                 </div>
             </div>

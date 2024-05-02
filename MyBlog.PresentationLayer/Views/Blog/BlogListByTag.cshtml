@@ -1,0 +1,62 @@
+﻿@using System.Text.RegularExpressions
+@model ﻿List<Article>
+@{
+    ViewData["Title"] = "BlogListByTag";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+@functions {
+    public string RemoveHtmlTags(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+            return input;
+
+        var regex = new Regex("<.*?>");
+        return regex.Replace(input, "");
+    }
+}
+<div class="row justify-content-center">
+                                <div class="col-lg-6 col-md-6 col-sm-6 ">
+                                    @foreach (var item in Model)
+        {
+            <div class="categories__post__item">
+                                        <div class="categories__post__item__pic small__item set-bg" data-setbg="@item.CoverImageUrl" style="background-image: url(&quot;img/categories/categories-post/cp-2.jpg&quot;);">
+                                            <div class="post__meta">
+                                               <h4>@item.CreatedDate.ToString("dd")</h4>
+                            <span>@item.CreatedDate.ToString("MMM")</span>
+                                            </div>
+                                        </div>
+                                        <div class="categories__post__item__text">
+                                            <span class="post__label">Recipe</span>
+                                            <h3><a href="#">The Best Weeknight Baked Potatoes, 3 Creative Ways</a></h3>
+                                            <ul class="post__widget">
+                                                <li>by <span>Admin</span></li>
+                                                <li>3 min read</li>
+                                                <li>20 Comment</li>
+                                            </ul>
+                                            <p> @{
+                                if (!string.IsNullOrEmpty(item.Detail))
+                                {
+                                    // Metindeki HTML etiketlerini kaldır
+                                    var detailWithoutHtml = RemoveHtmlTags(item.Detail);
+
+                                    // İlk 50 kelimeyi al
+                                    var first50Words = string.Join(" ", detailWithoutHtml.Split(' ').Take(50));
+
+                                    @Html.Raw(first50Words + "...")
+                                }
+                                else
+                                {
+                                    @Html.Raw(string.Empty)
+                                }
+                            }<p>
+                                        </div>
+                                    </div>
+        }
+                                    
+                                    
+                                </div>
+                                
+                                
+                            </div>
+
+

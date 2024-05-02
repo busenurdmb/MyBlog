@@ -1,0 +1,94 @@
+﻿
+@model ﻿List<Comment>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Writer/Views/WriterLayout/Index.cshtml";
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title">Yorum Sayfası</h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Yorumlar</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> Tüm Yorumlar </li>
+                </ol>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Yorum Listesi</h4>
+                        <p class="card-description">
+                            Tüm Bloglara Gelen Yorumlar ile ilgil İşlemleri Gerçekkleştirebilirisiniz
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Yorum Sahibi</th>
+                                        <th>Blog Başlığı</th>
+                                        <th>Tarih</th>
+                                        <th>Durum</th>
+                                        <th>İşlemler</th>
+                                        <th>Yoruma Git</th>
+                                    </tr>
+                                </thead>
+                                
+                                 <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.CommentId</td>
+                                            <td>@item.AppUser.Name @item.AppUser.SurName</td>
+                                            <td>@item.Article.Title</td>
+                                            <td>@item.CreatedDatae.ToString("dd-MMM-yyyy")</td>
+                                            @if (item.Status == true)
+                                {
+                                    <td>
+                                        <span class="badge badge-success">@item.Status</span>
+                                    </td>
+                                }
+                                @if (item.Status == false)
+                                {
+                                    <td>
+                                        <span class="badge badge-default">@item.Status</span>
+                                    </td>
+                                }
+                                            
+                                            <td><a href="/AdminReservation/OnaylandıReservation/@item.CommentId" class="btn btn-success ">
+                                        <span class="icon text-white">
+                                            <i class="mdi mdi-checkbox-marked-circle"></i>
+                                        </span>
+                                        <span class="text">Aktif</span>
+                                    </a>
+                                    <a href="/AdminReservation/BekletReservation/@item.CommentId" class="btn btn-dark">
+                                        <span class="icon text-white">
+                                            <i class="mdi mdi-block-helper"></i>
+                                        </span>
+                                        <span class="text">Pasif</span>
+                                    </a>
+                                            <td><a href="/Blog/BlogDetail/@item.ArticleId" class="btn btn-danger">
+                                                <span class="icon text-white">
+                                            <i class="mdi mdi-arrow-right-bold-hexagon-outline
+"></i>
+                                        </span>
+                                            <span class="text">Yoruma Git</span>     </a></td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

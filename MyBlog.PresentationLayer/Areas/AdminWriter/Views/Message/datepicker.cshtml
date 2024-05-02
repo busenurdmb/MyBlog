@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewData["Title"] = "ProfileIndex";
+    Layout = "~/Areas/Writer/Views/WriterLayout/Index.cshtml";
+}
+
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title">Mesajlaşma</h3>
+            
+        </div>
+        <div class="full padding_infor_info">
+            <div class="mail-box">
+                <div class="row">
+                    <div class="col-md-3">
+                        @await Component.InvokeAsync("_MailLayoutSidebarComponent")
+                    </div>
+                    <div class="col-md-9">
+
+
+
+                       
+                            <div class="full graph_revenue">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-xl-12  stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+                                            <div class="card bg-danger">
+                                            <div class=" card-header dark_bg full margin_bottom_30">
+                                                <div class="full graph_head">
+                                                    <div class="heading1 margin_0">
+                                                        <h2 class="text-white">
+                                                            <i class="fa fa-user "> @ViewBag.name</i>
+
+                                                        </h2>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="card-body px-3 py-4">
+                                                    <div class="d-flex justify-content-center">
+                                                        <img class="card-icon-indicator rounded-circle" src="@ViewBag.ımage" alt="" style="max-width: 150px; width: 100px; height: 100px;">
+                                                    </div>
+                                                    <br /> <br />
+                                                    <div class="row column1">
+                                                        <div class="col-md-6 col-lg-3">
+                                                            <div class="card bg-info">
+                                                                <div class="card-body px-3 py-4">
+                                                                    <div class="d-flex justify-content-between align-items-start">
+                                                                        <div class="color-card">
+                                                                            <p class="mb-0 color-card-head">Gelen Mesajlar</p>
+                                                                            <h2 class="text-white">
+                                                                                @ViewBag.Inbox
+                                                                            </h2>
+                                                                        </div>
+                                                                        <i class="card-icon-indicator mdi mdi-message-plus bg-inverse-icon-warning"></i>
+                                                                    </div>
+                                                                    <h6 class="text-white"></h6>
+                                                                </div>
+                                                            </div>
+
+                                                           
+
+                                                        </div>
+                                                        <div class="col-md-6 col-lg-3">
+                                                            <div class="card bg-primary">
+                                                                <div class="card-body px-3 py-4">
+                                                                    <div class="d-flex justify-content-between align-items-start">
+                                                                        <div class="color-card">
+                                                                            <p class="mb-0 color-card-head">Gönderilen Mesajlar</p>
+                                                                            <h2 class="text-white">
+                                                                                @ViewBag.Sendbox
+                                                                            </h2>
+                                                                        </div>
+                                                                        <i class="card-icon-indicator mdi mdi-message-reply bg-inverse-icon-warning"></i>
+                                                                    </div>
+                                                                    <h6 class="text-white"></h6>
+                                                                </div>
+                                                            </div>
+                                                          
+                                                        </div>
+                                                        <div class="col-md-6 col-lg-3">
+                                                            <div class="card bg-success">
+                                                                <div class="card-body px-3 py-4">
+                                                                    <div class="d-flex justify-content-between align-items-start">
+                                                                        <div class="color-card">
+                                                                            <p class="mb-0 color-card-head">Önemli Mesajlar</p>
+                                                                            <h2 class="text-white">
+                                                                                @ViewBag.Import
+                                                                            </h2>
+                                                                        </div>
+                                                                        <i class="card-icon-indicator mdi mdi-star bg-inverse-icon-warning"></i>
+                                                                    </div>
+                                                                    <h6 class="text-white"></h6>
+                                                                </div>
+                                                            </div>
+                                                           
+                                                                
+
+                                                            
+                                                        </div>
+                                                        <div class="col-md-6 col-lg-3">
+                                                           <div class="card bg-warning">
+                                                                    <div class="card-body px-3 py-4">
+                                                                        <div class="d-flex justify-content-between align-items-start">
+                                                                            <div class="color-card">
+                                                                                <p class="mb-0 color-card-head">Okunmamış Mesajlar</p>
+                                                                                <h2 class="text-white">
+                                                                                    @ViewBag.read<span class="h5">@ViewBag.read</span>
+                                                                                </h2>
+                                                                            </div>
+                                                                            <i class="card-icon-indicator mdi mdi-message-text-outline bg-inverse-icon-warning"></i>
+                                                                        </div>
+                                                                        <h6 class="text-white"></h6>
+                                                                    </div>
+                                                                </div>
+                                                            
+                                                       
+
+                                                        </div>
+                                                    </div>
+                                                    
+                                                 
+                                                </div>
+                                                <div class="d-flex justify-content-center">
+                                                <div class="col-xl-10 col-md-6 grid-margin stretch-card ">
+                                                        <!--datepicker-->
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <div id="inline-datepicker" class="datepicker table-responsive"></div>
+                                                            </div>
+                                                        </div>
+                                                        <!--datepicker ends-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

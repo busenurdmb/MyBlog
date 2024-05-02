@@ -12,11 +12,11 @@ namespace MyBlog.PresentationLayer.ViewComponents.CommentViewComponent
             _commentService = commentService;
         }
 
-        public IViewComponentResult Invoke(int id
-            )
+        public IViewComponentResult Invoke(int id)
         {
-            id = 1;
+            
             var values = _commentService.TGetCommentsByBlog(id);
+            ViewBag.count=values.Count;
             return View(values);
         }
     }

@@ -1,0 +1,47 @@
+﻿@model List<int>
+@{
+    ViewData["Title"] = "CreateTagBlog";
+    Layout = "~/Areas/Writer/Views/WriterLayout/Index.cshtml";
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title">Yeni TagGirişi</h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Tag</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> Tag
+                </ol>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Bloğa Tag Ekleme Paneli</h4>
+                        <p class="card-description">Aşağıdaki Alanları Boş Geçmeyin</p>
+                        <form method="post" >
+                            <div>
+                                <label for="tags">Etiketler:</label>
+                                @foreach (var tag in ViewBag.TagValues)
+                                {
+                                    <div>
+                                        <input type="checkbox" id="tag_@tag.Value" name="SelectedTags" value="@tag.Value" @(tag.Selected ? "checked" : "")>
+                                        <label for="tag_@tag.Value">@tag.Text</label>
+                                    </div>
+                                }
+                            </div>
+                            <input type="hidden" name="ArticleId" value="@ViewBag.ArticleId">
+                            <button type="submit" class="btn btn-success">Eşleştir</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+

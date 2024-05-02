@@ -176,6 +176,9 @@ namespace MyBlog.DataAccessLayer.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -282,6 +285,29 @@ namespace MyBlog.DataAccessLayer.Migrations
                     b.ToTable("Articles");
                 });
 
+            modelBuilder.Entity("MyBlog.EntityLayer.Concrete.ArticleTag", b =>
+                {
+                    b.Property<int>("ArticleTagId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArticleTagId"), 1L, 1);
+
+                    b.Property<int>("ArticleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ArticleTagId");
+
+                    b.HasIndex("ArticleId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("ArticleTags");
+                });
+
             modelBuilder.Entity("MyBlog.EntityLayer.Concrete.Category", b =>
                 {
                     b.Property<int>("CategoryId")
@@ -307,6 +333,9 @@ namespace MyBlog.DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"), 1L, 1);
 
+                    b.Property<int?>("AppUserId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ArticleId")
                         .HasColumnType("int");
 
@@ -322,9 +351,95 @@ namespace MyBlog.DataAccessLayer.Migrations
 
                     b.HasKey("CommentId");
 
+                    b.HasIndex("AppUserId");
+
                     b.HasIndex("ArticleId");
 
                     b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("MyBlog.EntityLayer.Concrete.Message", b =>
+                {
+                    b.Property<int>("MessageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageId"), 1L, 1);
+
+                    b.Property<bool>("IsDraft")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsImportant")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsJunk")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsTrash")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MailContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("MailDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MailSubject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<TimeSpan>("MailTime")
+                        .HasColumnType("time");
+
+                    b.Property<int>("ReceiverId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SenderId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MessageId");
+
+                    b.HasIndex("ReceiverId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Message");
+                });
+
+            modelBuilder.Entity("MyBlog.EntityLayer.Concrete.Notification", b =>
+                {
+                    b.Property<int>("NotificationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NotificationId"), 1L, 1);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IconCirleColor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IsRead")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NotificationIcon")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("NotificationId");
+
+                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("MyBlog.EntityLayer.Concrete.SocialMedia", b =>
@@ -468,30 +583,85 @@ namespace MyBlog.DataAccessLayer.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("MyBlog.EntityLayer.Concrete.ArticleTag", b =>
+                {
+                    b.HasOne("MyBlog.EntityLayer.Concrete.Article", "Article")
+                        .WithMany("ArticleTags")
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyBlog.EntityLayer.Concrete.Tag", "Tag")
+                        .WithMany("ArticleTags")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Article");
+
+                    b.Navigation("Tag");
+                });
+
             modelBuilder.Entity("MyBlog.EntityLayer.Concrete.Comment", b =>
                 {
+                    b.HasOne("MyBlog.EntityLayer.Concrete.AppUser", "AppUser")
+                        .WithMany("Comments")
+                        .HasForeignKey("AppUserId");
+
                     b.HasOne("MyBlog.EntityLayer.Concrete.Article", "Article")
                         .WithMany("Comments")
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("AppUser");
+
                     b.Navigation("Article");
+                });
+
+            modelBuilder.Entity("MyBlog.EntityLayer.Concrete.Message", b =>
+                {
+                    b.HasOne("MyBlog.EntityLayer.Concrete.AppUser", "Receiver")
+                        .WithMany("ReceiverMail")
+                        .HasForeignKey("ReceiverId")
+                        .IsRequired();
+
+                    b.HasOne("MyBlog.EntityLayer.Concrete.AppUser", "Sender")
+                        .WithMany("SenderMail")
+                        .HasForeignKey("SenderId")
+                        .IsRequired();
+
+                    b.Navigation("Receiver");
+
+                    b.Navigation("Sender");
                 });
 
             modelBuilder.Entity("MyBlog.EntityLayer.Concrete.AppUser", b =>
                 {
                     b.Navigation("Articles");
+
+                    b.Navigation("Comments");
+
+                    b.Navigation("ReceiverMail");
+
+                    b.Navigation("SenderMail");
                 });
 
             modelBuilder.Entity("MyBlog.EntityLayer.Concrete.Article", b =>
                 {
+                    b.Navigation("ArticleTags");
+
                     b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("MyBlog.EntityLayer.Concrete.Category", b =>
                 {
                     b.Navigation("Articles");
+                });
+
+            modelBuilder.Entity("MyBlog.EntityLayer.Concrete.Tag", b =>
+                {
+                    b.Navigation("ArticleTags");
                 });
 #pragma warning restore 612, 618
         }

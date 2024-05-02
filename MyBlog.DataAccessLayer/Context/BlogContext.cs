@@ -18,7 +18,28 @@ namespace MyBlog.DataAccessLayer.Context
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Writer> Writers { get; set; }
         public DbSet<SocialMedia> SocialMedias { get; set; }
+        public DbSet<ArticleTag> ArticleTags { get; set; }
+        public DbSet<Message> Message { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
        
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+
+            modelBuilder.Entity<Message>()
+                .HasOne(x => x.Sender)
+                .WithMany(y => y.SenderMail)
+                .HasForeignKey(z => z.SenderId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<Message>()
+                .HasOne(x => x.Receiver)
+                .WithMany(y => y.ReceiverMail)
+                .HasForeignKey(z => z.ReceiverId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+            base.OnModelCreating(modelBuilder);
+        }
 
 
 

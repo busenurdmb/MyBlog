@@ -1,0 +1,19 @@
+﻿@model Article
+<div class="single-post__author__profile">
+    <div class="single-post__author__profile__pic">
+        <img src="@Model.AppUser.İmageUrl" alt="">
+    </div>
+    <div class="single-post__author__profile__text">
+        <h4>@Model.AppUser.Name @Model.AppUser.SurName</h4>
+        <p>
+           @Model.AppUser.Description
+        </p>
+        <div class="single-post__author__profile__social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-google-plus"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-youtube-play"></i></a>
+        </div>
+    </div>
+</div>

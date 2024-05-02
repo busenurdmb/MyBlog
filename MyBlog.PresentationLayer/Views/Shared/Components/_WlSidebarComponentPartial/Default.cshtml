@@ -1,0 +1,148 @@
+﻿
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
+        <a class="sidebar-brand brand-logo" href="../../index.html">
+            <img src="~/icons8d.png" style=" max-width: 50px;"  />
+            <img src="~/icons8m.png" style=" max-width: 50px;" />
+            <img src="~/icons8b.png" style=" max-width: 50px;" />
+        </a>
+      <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href="../../index.html"><img src="/Breeze-Free-Bootstrap-Admin-Template-1.0.0/template/assets/images/logo-mini.svg" alt="logo" /></a>
+    </div>
+    <ul class="nav">
+        <li class="nav-item nav-profile">
+            <a href="#" class="nav-link">
+                <div class="nav-profile-image">
+                    <img src="@ViewBag.ImageUrl" alt="profile" />
+                    <span class="login-status online"></span>
+                    <!--change to offline or busy as needed-->
+                </div>
+                <div class="nav-profile-text d-flex flex-column pr-3">
+                    <span class="font-weight-medium mb-2">
+                        @ViewBag.User 
+                    </span>
+                    <span class="font-weight-normal">@ViewBag.Email</span>
+                </div>
+            </a>
+                @if (User.IsInRole("Writer")){
+                 <p>Toplam Blog Sayısı:<span class="badge badge-danger text-white ml-3 rounded">@ViewBag.blogs</span></p>
+                }
+            
+        </li>
+        @if (User.IsInRole("Writer"))
+        {
+            <li class="nav-item">
+                <a class="nav-link" href="/Writer/Dashboard/Index">
+
+                    <i class="mdi mdi-home menu-icon"></i>
+                    <span class="menu-title">Dashboard</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/Writer/Blog/MyBlogList">
+                    <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                    <span class="menu-title">Bloglarım</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Writer/Blog/CreateBlog">
+                    <i class="mdi mdi-playlist-plus menu-icon"></i>
+                    <span class="menu-title">Blog Ekle</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Writer/Comment/Index">
+                    <i class="mdi mdi-comment-multiple-outline menu-icon"></i>
+                    <span class="menu-title">Yorumlar</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/AdminWriter/Profile/EditProfile">
+                    <i class="mdi mdi-human-greeting menu-icon"></i>
+                    <span class="menu-title">Profilim</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/AdminWriter/Message/Inbox">
+                    <i class="mdi mdi-message-draw menu-icon"></i>
+                    <span class="menu-title">Mesajlar</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Writer/Notification/MyNotificationList">
+                    <i class="mdi mdi-bell-outline menu-icon"></i>
+                    <span class="menu-title">Bildirimler</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Login/SignOut">
+                    <i class="mdi mdi-logout mr-2 menu-icon"></i>
+                    <span class="menu-title">Çıkış Yap</span>
+                </a>
+            </li>
+
+        }
+        @if (User.IsInRole("Admin"))
+        {
+            <li class="nav-item">
+                <a class="nav-link" href="/Admin/Dashboard/Index">
+
+                    <i class="mdi mdi-home menu-icon"></i>
+                    <span class="menu-title">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Admin/Statistic/Index">
+
+                    <i class="mdi mdi-heart menu-icon"></i>
+                    <span class="menu-title">İstatistik</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Admin/Blog/Index">
+                    <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                    <span class="menu-title">Bloglar</span>
+                </a>
+            </li>
+         
+            <li class="nav-item">
+                <a class="nav-link" href="/Admin/Comment/Index">
+                    <i class="mdi mdi-comment-multiple-outline menu-icon"></i>
+                    <span class="menu-title">Yorumlar</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/AdminWriter/Profile/EditProfile">
+                    <i class="mdi mdi-human-greeting menu-icon"></i>
+                    <span class="menu-title">Profilim</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/AdminWriter/Message/Inbox">
+                    <i class="mdi mdi-message-draw menu-icon"></i>
+                    <span class="menu-title">Mesajlar</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Admin/Notification/MyNotificationList">
+                    <i class="mdi mdi-bell-outline menu-icon"></i>
+                    <span class="menu-title">Bildirimler</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Admin/Tag/tagList">
+                    <i class="mdi mdi-image-filter-vintage menu-icon"></i>
+                    <span class="menu-title">Taglar</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Login/SignOut">
+                    <i class="mdi mdi-logout mr-2 menu-icon"></i>
+                    <span class="menu-title">Çıkış Yap</span>
+                </a>
+            </li>
+
+        }
+       
+    </ul>
+</nav>

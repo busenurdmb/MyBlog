@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MyBlog.DataAccessLayer.EntityFramwork
 {
-    public class EfTagDal : GenericRepository<Category>, ICategoryDal
+    public class EfTagDal : GenericRepository<Tag>, ITagDal
     {
     }
 }

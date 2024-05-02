@@ -1,0 +1,78 @@
+﻿@model ﻿List<Article>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Writer/Views/WriterLayout/Index.cshtml";
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title">Blog Sayfası</h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Bloglar</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> Tüm Bloglar </li>
+                </ol>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Blog Listesi</h4>
+                        <p class="card-description">
+                            Yazarların Yazmış Olduğu Blogları Görmektesiniz
+                        </p>
+                        <div class="pull-right position search_inbox">
+                                    <div class="input-append">
+                                        <input type="text" class="sr-input form-control" id="filterText" placeholder="Arama yapınız" onkeyup="filterProducts(this.value)">
+                                        <button class="btn sr-btn" type="button"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Başlık</th>
+                                        <th>Resim</th>
+                                        
+                                        <th>Kategori</th>
+                                        <th>Tarih</th>
+                                        <th>Bloğa git</th>
+                                    
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr data-name="@item.Title" class="product-item">
+                                            <td>@item.ArticleId</td>
+                                            <td >@item.Title</td>
+                                            <td><img src="@item.CoverImageUrl" /></td>
+                                           <td>@item.Category.CategoryName</td> 
+                                            <td>@item.CreatedDate.ToString("dd-MMM-yyyy")</td>
+                                             <td><a href="/Blog/BlogDetail/@item.ArticleId" class="btn btn-danger">
+                                                <span class="icon text-white">
+                                            <i class="mdi mdi-arrow-right-bold-hexagon-outline
+"></i>
+                                        </span>
+                                            <span class="text">Bloğa Git</span>     </a></td>
+
+                                         
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

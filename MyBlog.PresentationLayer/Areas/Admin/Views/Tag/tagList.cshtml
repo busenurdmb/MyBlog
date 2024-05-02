@@ -1,0 +1,84 @@
+﻿
+
+
+@model ﻿List<Tag>
+@{
+    ViewData["Title"] = "tagList";
+    Layout = "~/Areas/Writer/Views/WriterLayout/Index.cshtml";
+}
+
+
+
+
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title">Etiket Sayfası</h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Etiketler</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> Etiket Listesi </li>
+                </ol>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Etiket Listesi</h4>
+                        <p class="card-description">
+                            Etiket ile ilgili işlemleri gerçekleştirebilirisniz
+                        </p>
+                        <div class="table-responsive">
+                             <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>*</th>
+                                <th>Tag</th>
+                             
+                                <th>Sil</th>
+                                <th>Güncelle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td><a href="#">@item.TagId</a></td>
+                                    <td>@item.TagTitle</td>
+
+                                     
+                                    <td>
+                                        <a href="/Admin/Tag/DeleteTag/@item.TagId" class="btn btn-danger btn-icon-split">
+                                            <span class="icon text-white">
+                                                <i class="mdi mdi-close-circle"></i>
+                                            </span>
+                                            <span class="text">Sil</span>
+                                        </a>
+                                    </td>
+
+                                    <td>
+                                        <a href="/Admin/Tag/UpdateTag/@item.TagId" class="btn btn-success btn-icon-split">
+                                            <span class="icon text-white">
+                                                <i class="mdi mdi-lead-pencil"></i>
+                                            </span>
+                                            <span class="text">Güncelle</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                            <a href="/Admin/Tag/CreateTag" class="btn btn-info">Tag Oluştur</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

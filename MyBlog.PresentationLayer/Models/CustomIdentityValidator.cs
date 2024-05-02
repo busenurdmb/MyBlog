@@ -5,6 +5,7 @@ namespace MyBlog.PresentationLayer.Models
 {
     public class CustomIdentityValidator : IdentityErrorDescriber
     {
+        
         public override IdentityError PasswordRequiresLower()
         {
             return new IdentityError()
